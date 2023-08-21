@@ -20,6 +20,7 @@ import ReactDOM from "react-dom/client";
       - LINKS
       - FEEDBACKS
       - CONATCT US 
+      -footer
   --------------------------------------------
  */
 
