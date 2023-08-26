@@ -1,4 +1,4 @@
-import { resto_online_delivery } from "../utilities/constantURL.js"
+import { resto_online_delivery} from "../utilities/constantURL.js"
 
 const RestarentWithOnlineFood = (props) => {
     const { onlineRestoDelivery } = props
@@ -9,8 +9,8 @@ const RestarentWithOnlineFood = (props) => {
             } width={"100%"} />
             <h6 className="fw-bold mt-2">{onlineRestoDelivery.name}</h6>
             <p><i className="bi bi-star-fill"></i> {onlineRestoDelivery.avgRating}</p>
-            <p>{onlineRestoDelivery.cuisines}</p>
-            {/* <p>{onlineRestoDelivery.areaName}</p> */}
+            <p>{onlineRestoDelivery.cuisines.join(" , ")}</p>
+            <small>{onlineRestoDelivery.areaName}</small>
         </div>
     );
 };

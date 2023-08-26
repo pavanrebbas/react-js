@@ -3,3 +3,4 @@ export const Best_Offer_Img = "https://media-assets.swiggy.com/swiggy/image/uplo
 export const Whats_On_Img = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/"
 export const top_resto_img = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,/"
 export const resto_online_delivery = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
+export const footer_Logo_img = "https://logowik.com/content/uploads/images/restaurant9491.logowik.com.webp"

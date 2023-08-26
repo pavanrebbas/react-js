@@ -70,7 +70,7 @@ export const ToprestarantData = [
         locality: "Near Apollo Hospital",
         areaName: "Jubilee Hills",
         costForTwo: "₹150 for two",
-        cuisines: ["Biryani", "North Indian", "Tandoor"],
+        cuisines: ["Biryani", "Tandoor"],
         avgRating: 3.9,
     },
 
@@ -121,85 +121,29 @@ export const onlineFoodDelivery = [
 
     {
         id: "9277",
-        name: "Mehfil",
+        name: "Lucky Restaurant",
         cloudinaryImageId: "qems028i3da5rxf81rbp",
         locality: "Attapur Main Road(pillar no-146)",
-        areaName: "Rambagh Colony",
+        areaName: "Masab Tank",
         costForTwo: "₹300 for two",
         cuisines: [
             "Biryani",
             "North Indian",
-            "Tandoor",
-            "Chinese",
-            "Kebabs"
+
         ],
         avgRating: 3.9
     },
 
     {
         id: "92771",
-        name: "Lucky Restarent",
-        cloudinaryImageId: "b0nzybduoezgh53v0svy",
+        name: "KFC",
+        cloudinaryImageId: "56c9ab92bd79745fd152a30fa2525426",
         locality: "Attapur Main Road(pillar no-146)",
-        areaName: "mehipatnam",
+        areaName: "Mehipatnam",
         costForTwo: "₹350 for two",
         cuisines: [
             "Biryani",
-            "North Indian",
-            "Tandoor",
-            "Chinese",
-            "Kebabs"
-        ],
-        avgRating: 3.2
-    },
-
-    {
-        id: "92771",
-        name: "Lucky Restarent",
-        cloudinaryImageId: "b0nzybduoezgh53v0svy",
-        locality: "Attapur Main Road(pillar no-146)",
-        areaName: "mehipatnam",
-        costForTwo: "₹350 for two",
-        cuisines: [
-            "Biryani",
-            "North Indian",
-            "Tandoor",
-            "Chinese",
-            "Kebabs"
-        ],
-        avgRating: 3.2
-    },
-
-    {
-        id: "92771",
-        name: "Lucky Restarent",
-        cloudinaryImageId: "b0nzybduoezgh53v0svy",
-        locality: "Attapur Main Road(pillar no-146)",
-        areaName: "mehipatnam",
-        costForTwo: "₹350 for two",
-        cuisines: [
-            "Biryani",
-            "North Indian",
-            "Tandoor",
-            "Chinese",
-            "Kebabs"
-        ],
-        avgRating: 3.2
-    },
-
-    {
-        id: "92771",
-        name: "Lucky Restarent",
-        cloudinaryImageId: "b0nzybduoezgh53v0svy",
-        locality: "Attapur Main Road(pillar no-146)",
-        areaName: "mehipatnam",
-        costForTwo: "₹350 for two",
-        cuisines: [
-            "Biryani",
-            "North Indian",
-            "Tandoor",
-            "Chinese",
-            "Kebabs"
+            "Burgers"
         ],
         avgRating: 3.2
     },
@@ -207,21 +151,93 @@ export const onlineFoodDelivery = [
 
     {
         id: "92771",
-        name: "Lucky Restarent",
+        name: "Shahouse",
         cloudinaryImageId: "b0nzybduoezgh53v0svy",
         locality: "Attapur Main Road(pillar no-146)",
-        areaName: "mehipatnam",
+        areaName: "Tolichowki",
         costForTwo: "₹350 for two",
         cuisines: [
             "Biryani",
-            "North Indian",
-            "Tandoor",
-            "Chinese",
-            "Kebabs"
         ],
         avgRating: 3.2
     },
-]
+
+
+    {
+        id: "92771",
+        name: "Subway",
+        cloudinaryImageId: "1ace5fa65eff3e1223feb696c956b38b",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Mehipatnam",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "salads",
+            "snacks",
+        ],
+        avgRating: 3.5
+    },
+
+
+    {
+        id: "92771",
+        name: "pista house",
+        cloudinaryImageId: "b0nzybduoezgh53v0svy",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Humayun Nagar",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "kebabs",
+            "Fast food"
+        ],
+        avgRating: 4.2
+    },
+
+
+    {
+        id: "92771",
+        name: "McDonald's",
+        cloudinaryImageId: "ee5f8e06b300efc07c9fe3f4df40dfc4",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Humayun Nagar",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "Burgers",
+            "Cafe"
+        ],
+        avgRating: 4.5
+    },
+
+    {
+        id: "92771",
+        name: "AI Taza ",
+        cloudinaryImageId: "b9896358058a0b743f4983ad2c045ace",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Asif Nagar",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "Arabian",
+            "Juices"
+        ],
+        avgRating: 3.0
+    },
+
+    {
+        id: "92771",
+        name: "Mehfil",
+        cloudinaryImageId: "wkvh8xtryde5dj2nrme5",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Rambagh Colony",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "Biryani",
+            "Tandoor"
+        ],
+        avgRating: 3.0
+    },
+
+
+];
+
 
 
 

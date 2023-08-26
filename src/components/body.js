@@ -12,10 +12,10 @@
 */
 
 import BestOffers from "../components/BestOffres.js"
-import UserLooksFor from "./whatsMind.js";
+import UserLooksFor from "../components/whatsMind.js";
 import { userName } from "../utilities/mockData.js";
-import TopRestarentscomponent from "./TopRestaurant.js";
-import RestarentWithOnlineFood from "./Onlinedeliveryresto.js";
+import TopRestarentscomponent from "../components/TopRestaurant.js"
+import RestarentWithOnlineFood from "../components/Onlinedeliveryresto.js";
 import { FoodData } from "../utilities/mockData.js";
 import { bestOffersData } from "../utilities/mockData.js";
 import { ToprestarantData } from "../utilities/mockData.js";
@@ -53,8 +53,8 @@ const Bodycomponent = () => {
                     <div className="col-lg-4 col-md-4 col-6 py-2">
                         <BestOffers
                             restImg="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,/rng/md/carousel/production/9ea1cecc15fa19367d1c7afe57fefb92" />
-                    </div>
-                </div> */}
+                    </div> */
+                }
             </div>
 
             {/****************** What's On Your Mind ******************/}
@@ -110,13 +110,12 @@ const Bodycomponent = () => {
                             restoName="KFC"
                             restoRating="4.1 "
                             restoLocation="Himayath Nagar" />
-                    </div> */}
-
+                    </div> */
+                }
             </div>
-            <hr />
         </div >
-    )
+    );
 
-}
+};
 
 export default Bodycomponent;

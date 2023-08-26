@@ -1,11 +1,14 @@
+import { footer_Logo_img } from "../utilities/constantURL";
+
+
 const Footercomponent = () => {
     return (
         <div className="footer py-5">
             <div className="container">
                 <div className="row ">
                     <div className="col-lg-3 col-md-4 col-4">
-                        <img src="https://logowik.com/content/uploads/images/restaurant9491.logowik.com.webp" className="rounded-5" width={"50%"} />
-                        <p>© 2023  restauent
+                        <img src={footer_Logo_img} className="rounded-5" width={"50%"} />
+                        <p className="text-light">© 2023  restauent
                             Pvt. Ltd was</p>
                     </div>
 
