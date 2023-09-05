@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponet from "./components/Header.js";
-import Bodycomponent from "./components/body.js";
+import Bodycomponent from "./components/Body.js";
 import Footercomponent from "./components/Footer.js";
 
 

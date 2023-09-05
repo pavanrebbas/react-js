@@ -63,55 +63,7 @@ export const FoodData = [
 //////TOPRestarentData (JSON Data)////////
 export const ToprestarantData = [
 
-    {
-        id: "344287",
-        name: "Kwality Walls",
-        cloudinaryImageId: "ee5f8e06b300efc07c9fe3f4df40dfc4",
-        locality: "Near Apollo Hospital",
-        areaName: "Jubilee Hills",
-        costForTwo: "₹150 for two",
-        cuisines: ["Biryani", "Tandoor"],
-        avgRating: 3.9,
-    },
-
-    {
-        id: "344284",
-        name: "KFC",
-        cloudinaryImageId: "56c9ab92bd79745fd152a30fa2525426",
-        locality: "Medhipatnam",
-        areaName: "Jubilee Hills",
-        costForTwo: "₹120 for two",
-        cuisines: [
-            "South Indian"
-        ],
-        avgRating: 3.5,
-    },
-
-    {
-        id: "354284",
-        name: "Mc Donald's",
-        cloudinaryImageId: "ee5f8e06b300efc07c9fe3f4df40dfc4",
-        locality: "Narayanaguda",
-        areaName: "near RS brotheres",
-        costForTwo: "₹120 for one",
-        cuisines: [
-            "South Indian"
-        ],
-        avgRating: 3,
-    },
-
-    {
-        id: "354d288",
-        name: "Therobroma",
-        cloudinaryImageId: "qo2pnxwhpcs6xxnvd1kc",
-        locality: "Rethibowli",
-        areaName: "near RS brotheres",
-        costForTwo: "₹120 for one",
-        cuisines: [
-            "South Indian"
-        ],
-        avgRating: 4.5,
-    },
+    
 ]
 
 
@@ -235,14 +187,46 @@ export const onlineFoodDelivery = [
         avgRating: 3.0
     },
 
+    {
+        id: "92771",
+        name: "Mehfil",
+        cloudinaryImageId: "wkvh8xtryde5dj2nrme5",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Rambagh Colony",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "Biryani",
+            "Tandoor"
+        ],
+        avgRating: 3.0
+    },
+
+    {
+        id: "92771",
+        name: "Mehfil",
+        cloudinaryImageId: "wkvh8xtryde5dj2nrme5",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Rambagh Colony",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "Biryani",
+            "Tandoor"
+        ],
+        avgRating: 3.0
+    },
+
+    {
+        id: "92771",
+        name: "Mehfil",
+        cloudinaryImageId: "wkvh8xtryde5dj2nrme5",
+        locality: "Attapur Main Road(pillar no-146)",
+        areaName: "Rambagh Colony",
+        costForTwo: "₹350 for two",
+        cuisines: [
+            "Biryani",
+            "Tandoor"
+        ],
+        avgRating: 3.0
+    },
 
 ];
-
-
-
-
-
-
-
-
-

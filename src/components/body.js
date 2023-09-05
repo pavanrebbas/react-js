@@ -19,15 +19,72 @@ import RestarentWithOnlineFood from "../components/Onlinedeliveryresto.js";
 import { FoodData } from "../utilities/mockData.js";
 import { bestOffersData } from "../utilities/mockData.js";
 import { ToprestarantData } from "../utilities/mockData.js";
-import { onlineFoodDelivery } from "../utilities/mockData.js"
-
-
-
-
+import { onlineFoodDelivery } from "../utilities/mockData.js";
+import { useEffect, useState } from "react";
 
 
 
 const Bodycomponent = () => {
+
+    let [ToprestarantData, filterrestarent] = useState(
+
+        [
+            {
+                id: "344287",
+                name: "Kwality Walls",
+                cloudinaryImageId: "ee5f8e06b300efc07c9fe3f4df40dfc4",
+                locality: "Near Apollo Hospital",
+                areaName: "Jubilee Hills",
+                costForTwo: "₹150 for two",
+                cuisines: ["Biryani", "Tandoor"],
+                avgRating: 3.9,
+                cost: 110,
+            },
+
+            {
+                id: "344284",
+                name: "KFC",
+                cloudinaryImageId: "56c9ab92bd79745fd152a30fa2525426",
+                locality: "Medhipatnam",
+                areaName: "Jubilee Hills",
+                costForTwo: "₹120 for two",
+                cuisines: [
+                    "South Indian"
+                ],
+                avgRating: 4.1,
+                cost: 60,
+            },
+
+            {
+                id: "354284",
+                name: "Mc Donald's",
+                cloudinaryImageId: "ee5f8e06b300efc07c9fe3f4df40dfc4",
+                locality: "Narayanaguda",
+                areaName: "near RS brotheres",
+                costForTwo: "₹120 for one",
+                cuisines: [
+                    "South Indian"
+                ],
+                avgRating: 4.2,
+                cost: 110,
+            },
+
+            {
+                id: "354d288",
+                name: "Therobroma",
+                cloudinaryImageId: "qo2pnxwhpcs6xxnvd1kc",
+                locality: "Rethibowli",
+                areaName: "near RS brotheres",
+                costForTwo: "₹120 for one",
+                cuisines: [
+                    "South Indian"
+                ],
+                avgRating: 4.5,
+                cost: 300,
+            },
+        ]
+    )
+
     return (
         <div className="body">
 
@@ -37,23 +94,6 @@ const Bodycomponent = () => {
 
                 {
                     bestOffersData.map((besoffer) => <BestOffers bestoff={besoffer} />)
-                }
-
-                {/* <div className="row">
-                    <div className="col-lg-4 col-md-4 col-6 py-2">
-                        <BestOffers
-                            restImg="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/192aa65bc102da7d40208a6e7da1800c" />
-                    </div>
-
-                    <div className="col-lg-4 col-md-4 col-6 py-2">
-                        <BestOffers
-                            restImg="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/21e0a04c73c8b39b5616799e219ce032" />
-                    </div>
-
-                    <div className="col-lg-4 col-md-4 col-6 py-2">
-                        <BestOffers
-                            restImg="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,/rng/md/carousel/production/9ea1cecc15fa19367d1c7afe57fefb92" />
-                    </div> */
                 }
             </div>
 
@@ -70,6 +110,18 @@ const Bodycomponent = () => {
             {/*********TOP RESTARENTS IN HYDERABAD*********/}
             <h4 className=" fw-bold mx-5 px-5 py-4">
                 Top restaurants  in Hyderabad</h4>
+            <div className="filterresto container py-2">
+
+                <button className="btn btn-primary" onClick={() => {
+
+                    let filterresto = ToprestarantData.filter((resto) => { resto.avgRating > 4 })
+
+                    filterrestarent(filterresto)
+
+                }}>
+                    4+ ating</button>
+
+            </div>
             <div className="topresto-container">
                 {
                     ToprestarantData.map((restarent) => (<TopRestarentscomponent restoData={restarent} />))
