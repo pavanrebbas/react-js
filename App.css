@@ -129,7 +129,21 @@ i {
 
 
 
-/* @media  (min-width:425px) and (max-width:425px) {
+/* @media (max-width:425px)  {
+
+    .resto-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        justify-content: center;
+        grid-gap: 20px;
+    }
+
+} */
+
+
+
+
+/* @media (min-width:768px) and (max-width:768px) {
 
     .resto-container {
         display: grid;

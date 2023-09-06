@@ -91,7 +91,6 @@ const Bodycomponent = () => {
             {/************** BEST-OFFERS ***************/}
             <h4 className="pt-5 fw-bold mx-5 px-5 py-2">Best Offers for you</h4>
             <div className="BestOffers-container">
-
                 {
                     bestOffersData.map((besoffer) => <BestOffers bestoff={besoffer} />)
                 }
@@ -111,16 +110,21 @@ const Bodycomponent = () => {
             <h4 className=" fw-bold mx-5 px-5 py-4">
                 Top restaurants  in Hyderabad</h4>
             <div className="filterresto container py-2">
-
-                <button className="btn btn-primary" onClick={() => {
-
-                    let filterresto = ToprestarantData.filter((resto) => { resto.avgRating > 4 })
+                <button className="btn btn-outline-success" onClick={() => {
+                    let filterresto = ToprestarantData.filter((resto) => (resto.avgRating > 4))
 
                     filterrestarent(filterresto)
+                }}
+                >Rating 4.0+
+                </button>
 
-                }}>
-                    4+ ating</button>
+               {/*  <button className="btn btn-outline-success" onClick={() => {
+                    let filterresto = ToprestarantData.filter((resto) => (resto.avgRating > 4))
 
+                    filterrestarent(filterresto)
+                }}
+                >above 100Rs
+                </button> */}
             </div>
             <div className="topresto-container">
                 {
