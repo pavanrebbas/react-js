@@ -1,4 +1,4 @@
-// BEStOFFERS-DATA (JSON-DATA)
+///// BESTOFFERS-DATA (JSON-DATA)
 export const bestOffersData = [
 
     {
@@ -12,15 +12,17 @@ export const bestOffersData = [
     {
         Img: "b7a607f336f0815cd1056262006bb257"
     },
+
+    
 ];
 
 
-///  WhatsOnMind Name (ARRAY)
+///// WhatsOnMind Name (ARRAY)
 export const userName = {
     name: 'pavan'
 };
 
-// whatsOnYourMind (JSON-DATA)
+///// whatsOnYourMind (JSON-DATA)
 export const FoodData = [
     {
         foodImgId: "v1675667625/PC_Creative%20refresh/Biryani_2.png",
@@ -60,14 +62,13 @@ export const FoodData = [
 ]
 
 
-//////TOPRestarentData (JSON Data)////////
+////// TOPRestarentData (JSON Data) ////////
 export const ToprestarantData = [
 
-    
 ]
 
 
-/// RESTARUNER WITH ONLINE FOOD DEVIVERY
+///// RESTARUNER WITH ONLINE FOOD DEVIVERY
 
 export const onlineFoodDelivery = [
 

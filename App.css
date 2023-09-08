@@ -153,3 +153,21 @@ i {
     }
 
 } */
+
+.shimmer-card {
+    height: 50vh;
+    background-color: gainsboro;
+}
+
+.shimmer-content1 {
+
+    border: 10px solid gainsboro;
+    margin: 10px 0px;
+}
+
+.shimmer-content2 {
+
+    border: 10px solid gainsboro;
+    margin: 10px 0px;
+    width: 50%;
+}
