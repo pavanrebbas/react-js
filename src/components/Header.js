@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const HeaderComponet = () => {
 
 
-
     const [btnName, updadtedBtnName] = useState("login")
 
     return (

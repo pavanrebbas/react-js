@@ -2,7 +2,7 @@ import { Whats_On_Img } from "../utilities/constantURL";
 
 const UserLooksFor = (props) => {
     const { food } = props;
-    console.log(food)
+    // console.log(food)
     return (
         <div className="UserLookFor">
             <img src={Whats_On_Img + food.foodImgId} width={"100%"} />

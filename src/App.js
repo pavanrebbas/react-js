@@ -91,7 +91,7 @@ const appRouter = createBrowserRouter([
       },
 
       {
-        path: "restomenu/:restoId",
+        path: "restomenu/:restoid",
         element: <RestoMenu></RestoMenu>
       }
 

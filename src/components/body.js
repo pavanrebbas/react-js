@@ -22,6 +22,7 @@ import { bestOffersData } from "../utilities/mockData.js";
 import { onlineFoodDelivery } from "../utilities/mockData.js";
 import { useEffect, useState } from "react";
 import { Shimmer } from "./shimmer.js";
+import { Link } from "react-router-dom";
 
 
 
@@ -1062,11 +1063,12 @@ const Bodycomponent = () => {
 
                 <div className="row py-3" >
                     {
-                        ToprestarantData.map((restarent) =>
+                        ToprestarantData.map((restarent) => (
                             <div className="col-lg-3 col-md-3 col-4 py-2" >
-                                <TopRestarentscomponent restoData={restarent} />
+                                <Link to={ "restomenu/" + restarent.info.id } className="text"> <TopRestarentscomponent restoData={restarent} /> </Link>
                             </div>
-                        )}
+                        ))
+                    }
                 </div>
                 <hr />
             </div>
