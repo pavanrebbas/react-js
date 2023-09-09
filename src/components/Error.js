@@ -8,7 +8,8 @@ const Error = () => {
     return (
         <div className="container py-5">
             <h2>OOpps</h2>
-            <p>{Error.status} {Error.statusText}</p>
+            <h3>{Error.status} {Error.statusText}</h3>
+            <h4>{Error.data}</h4>
         </div>
     )
 };
