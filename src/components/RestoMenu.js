@@ -42,20 +42,21 @@ const RestoMenu = () => {
         return (
             <Shimmer></Shimmer>
         )
-    }
+    };
 
     const { name, areaName, avgRating, cuisines } = restoMenu.data.cards[0].card.card.info;
     const { itemCards } = restoMenu.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
+    // data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards[0].card.info.itemAttribute.vegClassifier
 
     return (
 
 
-        <div className="container my-5">
+        <div className="container my-5 ">
             <h5 className="fw-bold" >{name}</h5>
-            <small>{cuisines.join(" , ")}</small> <br></br>
+            <small>{cuisines.join(" , ")}</small> <br/>
             <small>{areaName}</small>
             <p><i className="bi bi-star-fill"></i> {avgRating}</p>
-            <hr></hr>
+            <hr/>
 
 
             <div className="row ">
@@ -63,8 +64,8 @@ const RestoMenu = () => {
                 <div className="col-2 py-3">
                     <button className="btn btn-success" onClick={() => {
 
-                        // let vegItems = itemCards.filter((veg) => (veg.card.info.rating > 4))
-                        // setRestoMenu(vegItems)
+                        let vegItems = itemCards.filter((veg) => (veg.card.info.itemAttribute.vegClassifier = "VEG"))
+                        setRestoMenu(vegItems)
                     }}
                     >veg only
                     </button>
@@ -72,16 +73,11 @@ const RestoMenu = () => {
                 </div>
 
                 {
-
                     itemCards.map((menuItem) =>
-
                         <div className="" >
                             {menuItem.card.info.name} - { menuItem.card.info.price}
-
                             <hr />
                         </div>
-
-
                     )}
 
             </div>

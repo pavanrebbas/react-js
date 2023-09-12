@@ -1065,7 +1065,7 @@ const Bodycomponent = () => {
                     {
                         ToprestarantData.map((restarent) => (
                             <div className="col-lg-3 col-md-3 col-4 py-2" >
-                                <Link to={ "restomenu/" + restarent.info.id } className="text"> <TopRestarentscomponent restoData={restarent} /> </Link>
+                                <Link to={ "restomenu/" + restarent.info.id} className="text"> <TopRestarentscomponent restoData={restarent} /> </Link>
                             </div>
                         ))
                     }
