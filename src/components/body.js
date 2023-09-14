@@ -42,7 +42,7 @@ const Bodycomponent = () => {
     const topRestofetchData = async () => {
         const restData = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.41113717402138&lng=78.4521259367466&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const orginalData = await restData.json();
-        console.log(orginalData)
+        // console.log(orginalData)
         // const apidta = orginalData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
         const topRestoApiList = [
             {
@@ -1065,7 +1065,7 @@ const Bodycomponent = () => {
                     {
                         ToprestarantData.map((restarent) => (
                             <div className="col-lg-3 col-md-3 col-4 py-2" >
-                                <Link to={ "restomenu/" + restarent.info.id} className="text"> <TopRestarentscomponent restoData={restarent} /> </Link>
+                                <Link to={"restomenu/" + restarent.info.id} className="text"> <TopRestarentscomponent restoData={restarent} /> </Link>
                             </div>
                         ))
                     }
@@ -1077,10 +1077,17 @@ const Bodycomponent = () => {
 
             {/********* RESTARENT WITH ONLINE FOOD DEVIVERY *********/}
             <h4 className=" fw-bold mx-5 px-5 mt-5">Restaurants with online food delivery in Hyderabad</h4>
-            <div className="onlineRestoDevivery-container py-3 online-food-component">
-                {
-                    onlineFoodDelivery.map(onlineResto => <RestarentWithOnlineFood onlineRestoDelivery={onlineResto} />)
-                }
+            <div className="container py-3 online-food-component">
+                <div className="row">
+                    {
+                        onlineFoodDelivery.map(onlineResto =>
+                            <div className="col-lg-3 col-md-3 col-4 py-2">
+                                <RestarentWithOnlineFood onlineRestoDelivery={onlineResto} />
+                            </div>
+
+                        )}
+                </div>
+
 
                 {/* <div className="col-lg-3 col-md-3 col-6">
                         <RestarentWithOnlineFood restImg="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,/wkvh8xtryde5dj2nrme5"

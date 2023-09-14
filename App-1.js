@@ -18,7 +18,7 @@ const nesteddivs = React.createElement('div', { id: 'parent' },
         React.createElement('p', { id: 'text' }, ' My name is pavankumar and i,m a Frontend Developer')),
 
 );
-console.log(nesteddivs)
+// console.log(nesteddivs)
 
 
 
