@@ -1,7 +1,7 @@
 import { top_resto_img } from "../utilities/constantURL.js"
 
 const TopRestarentscomponent = (props) => {
-     console.log(props);
+    // console.log(props);
     const { restoData } = props;
     // console.log(restoData);
     return (
@@ -13,7 +13,7 @@ const TopRestarentscomponent = (props) => {
                 <h6 className="fw-bold mt-2">{restoData.info.name}</h6>
                 <h6><i className="bi bi-star-fill"></i> {restoData.info.avgRating}</h6>
                 <p>{restoData.info.cuisines.join(" , ")}</p>
-                <small>{restoData.info.areaName}</small> 
+                <small>{restoData.info.areaName}</small>
             </div>
         </div>
     )

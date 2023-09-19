@@ -54,7 +54,8 @@ const AppLayout = () => {
 
 
 
-const appRouter = createBrowserRouter([
+const appRouter = createBrowserRouter(
+  [
 
   {
     path: "/",

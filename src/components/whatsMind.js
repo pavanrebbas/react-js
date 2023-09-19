@@ -5,8 +5,8 @@ const UserLooksFor = (props) => {
     // console.log(food)
     return (
         <div className="UserLookFor">
-            <img src={Whats_On_Img + food.foodImgId} width={"100%"} />
-            {/* <h5>{food.foodItemName}</h5> */}
+            <img src={Whats_On_Img + food.imageId} width={"100%"} />
+          {/*   <h5>{food.action.text}</h5> */}
         </div>
     );
 

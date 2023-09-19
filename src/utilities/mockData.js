@@ -18,9 +18,9 @@ export const bestOffersData = [
 
 
 ///// WhatsOnMind Name (ARRAY)
-export const userName = {
+/* export const userName = {
     name: 'pavan'
-};
+}; */
 
 ///// whatsOnYourMind (JSON-DATA)
 export const FoodData = [

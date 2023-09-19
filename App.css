@@ -117,26 +117,38 @@ i {
     }
 
 } */
+.shimmer-big {
+    padding: 100px 0px;
+
+}
 
 .shimmer-card {
     height: 50vh;
-    background-color: gainsboro;
+    background-color: rgba(226, 226, 231, 1);
 }
 
 .shimmer-content1 {
 
-    border: 10px solid gainsboro;
+    border: 10px solid rgba(226, 226, 231, 1);
     margin: 10px 0px;
 }
 
 .shimmer-content2 {
 
-    border: 10px solid gainsboro;
+    border: 10px solid rgba(226, 226, 231, 1);
     margin: 10px 0px;
     width: 50%;
 }
 
-.text{
+.text {
 
     text-decoration: none;
+}
+
+
+.image {
+    height: 100%;
+
+    width: 100%;
+    object-fit: contain;
 }

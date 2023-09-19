@@ -10,7 +10,7 @@ const HeaderComponet = () => {
     return (
         <header className="sticky-top Header-componet">
             <nav className="container navbar navbar-expand-sm ">
-                <img src={logo_Img} width="8%" />
+                <img src={logo_Img} width="6%" />
                 <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                     aria-expanded="false" aria-label="Toggle navigation"></button>
                 <div className="collapse navbar-collapse " id="collapsibleNavId">
