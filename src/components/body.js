@@ -15,7 +15,7 @@ import BestOffers from "../components/BestOffres.js"
 import UserLooksFor from "../components/whatsMind.js";
 import TopRestarentscomponent from "../components/TopRestaurant.js"
 import RestarentWithOnlineFood from "../components/Onlinedeliveryresto.js";
-import { FoodData } from "../utilities/mockData.js";
+// import { FoodData } from "../utilities/mockData.js";
 import { bestOffersData } from "../utilities/mockData.js";
 // import { ToprestarantData } from "../utilities/mockData.js";
 import { onlineFoodDelivery } from "../utilities/mockData.js";
@@ -31,8 +31,17 @@ const Bodycomponent = () => {
     // TOP-RESTAURENT-DATA
     let [ToprestarantData, filterrestaurent] = useState([]);
 
-    // WHATS ON YOUR MIND
-    let [whatsOnData, setWhatsOnData] = useState([])
+    // WHATS ON YOUR MIND-DATA
+    let [whatsOnData, setWhatsOnData] = useState([]);
+
+    // CLICK FUNCTIONS FILTER BUTTONS USESATE
+    let [avgRate, setAvgRate] = useState([]);
+
+    let [costForTwo, setCostForTwo] = useState([])
+
+
+    //SEARCH COMPONENTS
+    let [search, setSearch] = useState([])
 
 
     useEffect(() => {
@@ -49,8 +58,8 @@ const Bodycomponent = () => {
     const topRestofetchData = async () => {
         const restData = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.41113717402138&lng=78.4521259367466&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const orginalData = await restData.json();
-        console.log(orginalData)
-        // const apidta = orginalData.name
+        // console.log(orginalData)
+        const apidta = orginalData.name
         filterrestaurent(orginalData)
 
         //////// TOP RESTAURENT JSON RAW DATA LIKE API///////
@@ -1341,11 +1350,10 @@ const Bodycomponent = () => {
     ///// SHIMMER COMPONENTS MEANS (CONDITIONAL-RENDERING)/////
     if (ToprestarantData.length === 0) {
 
-        return <Shimmer/>
+        return <Shimmer />
     }
 
-    if (whatsOnData.length == 0) {
-
+    if (whatsOnData.length === 0) {
         return (
 
             <Shimmer />
@@ -1396,7 +1404,7 @@ const Bodycomponent = () => {
                     Top restaurants  in Hyderabad</h4>
                 <div className="row">
                     {/********* BUTTON-1 *********/}
-                    <div className="col-2">
+                    <div className="col-2 mx-2">
                         <button className="btn btn-outline-warning" onClick={() => {
                             let filterresto = ToprestarantData.filter((resto) => (resto.info.avgRating > 4))
                             filterrestaurent(filterresto)
@@ -1406,22 +1414,34 @@ const Bodycomponent = () => {
                     </div>
 
                     {/********** BUTTON-2 **********/}
-                    {/* <div className="col-2">
+                    <div className="col-2 mx-2">
                         <button className="btn btn-outline-success" onClick={() => {
-                            let filterresto = ToprestarantData.filter((resto) => (resto.info. == "jewelery"))
-                            filterrestaurent(filterresto)
-                        }}
-                        >Jiwellary</button>
+
+                            let costResto = ToprestarantData.filter((rest) => rest.info.costForTwo === "₹400 for two")
+                            filterrestaurent(costResto)
+                            console.log(costResto)
+
+                        }}>costForTwo</button>
                     </div>
 
-                  
-                    <div className="col-2">
-                        <button className="btn btn-outline-success" onClick={() => {
-                            let filterresto = ToprestarantData.filter((resto) => (resto.category === "electronics"))
-                            filterrestaurent(filterresto)
-                        }}
-                        >electronics</button>
-                    </div> */}
+                    {/********** SEARCH BUTTON **********/}
+                    <div className="col-4">
+                        <input type="search" value={search} placeholder="search" onChange={(e) => {
+
+                            setSearch(e.target.value)
+                        }} />
+
+
+                        <button className="btn btn-danger mx-2 " onClick={() => {
+
+                            let searchFood = ToprestarantData.filter((food) => food.info.name.includes((search)))
+                            filterrestaurent(searchFood)
+
+                        }}>search</button>
+                    </div>
+
+
+
                 </div>
 
                 <div className="row py-3" >

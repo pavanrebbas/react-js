@@ -5,7 +5,7 @@ const RestaureantCateroryMenuList = (props) => {
 
     return (
 
-        <div className="container">
+        <div className="container ">
 
             {
                 data.map((List_Item) =>
@@ -23,7 +23,7 @@ const RestaureantCateroryMenuList = (props) => {
                             {/* <button className="btn btn-success">Add</button> */}
                             
                         </div>
-                        <hr className="my-3 "/>
+                        <hr className="my-3 col-lg-6 col-12   offset-lg-3 "/>
                         {/* <p className="border border-2 black">kk</p> */}
                        
                     </div>

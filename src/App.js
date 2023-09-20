@@ -57,51 +57,49 @@ const AppLayout = () => {
 const appRouter = createBrowserRouter(
   [
 
-  {
-    path: "/",
-    element: <AppLayout></AppLayout>,
-    children: [
-      {
+    {
+      path: "/",
+      element: <AppLayout></AppLayout>,
+      children: [
+        {
 
-        path: "/",
-        element: <Bodycomponent></Bodycomponent>
+          path: "/",
+          element: <Bodycomponent></Bodycomponent>
 
-      },
-      {
+        },
+        {
 
-        path: "/about",
-        element: <About></About>
-      },
+          path: "/about",
+          element: <About></About>
+        },
 
-      {
+        {
 
-        path: "/menu",
-        element: <Menu></Menu>
-      },
+          path: "/menu",
+          element: <Menu></Menu>
+        },
 
-      {
+        {
 
-        path: "/offers",
-        element: <Offers></Offers>
-      },
+          path: "/offers",
+          element: <Offers></Offers>
+        },
 
-      {
+        {
 
-        path: "/cart",
-        element: <Cart></Cart>
-      },
+          path: "/cart",
+          element: <Cart></Cart>
+        },
 
-      {
-        path: "restomenu/:restoid",
-        element: <RestoMenu></RestoMenu>
-      }
+        {
+          path: "/restomenu/:restoid",
+          element: <RestoMenu></RestoMenu>
+        }
 
-    ],
-    errorElement: <Error></Error>
-  },
-
-
-]);
+      ],
+      errorElement: <Error></Error>
+    },
+  ]);
 
 
 

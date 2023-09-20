@@ -54,19 +54,19 @@ const RestoMenu = () => {
     )
 
     /**** OFFERS FLAT 20% LIKE THAT ****/
-    const { descriptionList } = restoMenu.data.cards[0].card.card.info.aggregatedDiscountInfo
+    const offers = restoMenu.data.cards[1].card.card.gridElements.infoWithStyle.offers
+    // console.log(Offers)
+
 
     /******** DELIVARY TIME ********/
     const { slaString, lastMileTravelString } = restoMenu.data.cards[0].card.card.info.sla
 
-    // const {descriptionList} = restoMenu.data.cards[0].card.card.info.
 
     return (
 
-
         <div className="container my-5 ">
             <div className="row ">
-                <div className="col-lg-4 col-md-6 offset-lg-3 ">
+                <div className="col-lg-4 col-md-5 offset-lg-3 offset-md-2 col-6 ">
                     <h5 className="fw-bold" >{name}</h5>
                     <small>{cuisines.join(" , ")}</small> <br />
                     <small>{areaName}, </small>
@@ -74,27 +74,31 @@ const RestoMenu = () => {
 
                 </div>
 
-                <div className="col-lg-4 col-md-6 ">
+                <div className="col-lg-4 col-md-5 col-6">
                     <p className="border border-1 w-25   py-1 text-center fw-bold" style={{ boxShadow: "0px 0px 5px 0px gray" }} > <i className="bi bi-star-fill" ></i> {avgRating}<hr /> <small>{totalRatingsString}</small> </p>
                 </div>
-                <hr className="col-6 offset-lg-3 offset-md-3" />
+                <hr className="col-lg-6 col-12 offset-lg-3" />
 
-                <div className="col-lg-6 offset-lg-3 d-flex gap-5">
+                <div className="col-lg-6 offset-md-2 offset-lg-3 d-flex gap-5">
                     <p className="fw-bold"><i class="bi bi-clock-fill"></i> {slaString} </p>
                     <p className="fw-bold"><i class="fa-solid fa-indian-rupee-sign"></i> {costForTwoMessage} </p>
                 </div>
             </div>
 
-            <div className="offset-lg-2 d-flex gap-5">
+            {/****************** OFFERS LIST ******************/}
+            <div className="row text-center my-3  gap-2 offset-lg-2 offset-md-2 ">
                 {
-                    descriptionList.map((offer) =>
-                        <div className="border border-1 rounded-3 px-2">
-                            <p className="fw-bold">{offer.meta}</p>
-                        </div>
+                    offers.map((offer) =>
+                        <>
+                            <div className="col-lg-3 col-md-4 col py-1 border border-1 rounded-3">
+                                <span className="fw-bold">{offer.info.header}</span> <br></br>
+                                <small> {offer.info.couponCode} </small> |
+                                <small> {offer.info.description} </small>
+                            </div>
+                        </>
                     )
                 }
             </div>
-
 
 
             {/* ALL MENU LIST */}
