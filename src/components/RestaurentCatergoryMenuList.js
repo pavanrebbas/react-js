@@ -19,7 +19,7 @@ const RestaureantCateroryMenuList = (props) => {
 
                         {/* CATERORY MENU ITEM IMAGES */}
                         <div className="col-lg-5 col-md-6 col">
-                            <img src={top_resto_img + List_Item.card.info.imageId} className="rounded-2"></img>
+                            <img src={top_resto_img + List_Item.card.info.imageId} width={"30%"}  style={{objectFit: "contain"}} className="rounded-2"></img>
                             {/* <button className="btn btn-success">Add</button> */}
                             
                         </div>

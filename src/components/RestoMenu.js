@@ -86,11 +86,11 @@ const RestoMenu = () => {
             </div>
 
             {/****************** OFFERS LIST ******************/}
-            <div className="row text-center my-3  gap-2 offset-lg-2 offset-md-2 ">
+            <div className="row text-center my-3  gap-2 offset-lg-2 ">
                 {
                     offers.map((offer) =>
                         <>
-                            <div className="col-lg-3 col-md-4 col py-1 border border-1 rounded-3">
+                            <div className=" col py-1 border border-1 rounded-3">
                                 <span className="fw-bold">{offer.info.header}</span> <br></br>
                                 <small> {offer.info.couponCode} </small> |
                                 <small> {offer.info.description} </small>

@@ -19,10 +19,11 @@ import RestarentWithOnlineFood from "../components/Onlinedeliveryresto.js";
 import { bestOffersData } from "../utilities/mockData.js";
 // import { ToprestarantData } from "../utilities/mockData.js";
 import { onlineFoodDelivery } from "../utilities/mockData.js";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Shimmer } from "./mainShimmer.js";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import UserDetails from "../utilities/userDetails.js";
 
 
 
@@ -37,11 +38,17 @@ const Bodycomponent = () => {
     // CLICK FUNCTIONS FILTER BUTTONS USESATE
     let [avgRate, setAvgRate] = useState([]);
 
-    let [costForTwo, setCostForTwo] = useState([])
+    let [costForTwo, setCostForTwo] = useState([]);
+
+    let [nearTwokmResto, setnearTwokmResto] = useState([]);
 
 
     //SEARCH COMPONENTS
     let [search, setSearch] = useState([])
+
+
+    // USER NAME FOR WHAT'S ON YOUR MIND WITH THE USE OF (USECONTEXT)
+    const userName = useContext(UserDetails)
 
 
     useEffect(() => {
@@ -160,7 +167,7 @@ const Bodycomponent = () => {
                     context: "seo-data-07cbce64-957e-49e3-bd59-d63b9a1a1c9e"
                 },
                 cta: {
-                    link: "https://www.swiggy.com/restaurants/james-bond-food-court-balkampet-rd-ameerpet-hyderabad-738039",
+                    link: "james-bond-food-court-balkampet-rd-ameerpet-hyderabad-738039",
                     text: "RESTAURANT_MENU",
                     type: "WEBLINK"
                 },
@@ -1006,14 +1013,14 @@ const Bodycomponent = () => {
                 widgetId: "collectionV5RestaurantListWidget_byName"
             }
         ];
-        filterrestaurent(topRestoApiList)
+        filterrestaurent(topRestoApiList);
+        setAvgRate(topRestoApiList);
+        setCostForTwo(topRestoApiList);
+        setnearTwokmResto(topRestoApiList)
     };
 
 
     //////WHATS-ON-YOUR-MIND-FECTH-DATA///////////
-    const userName = {
-        name: "pavan"
-    }
     const whatsonData = () => {
 
 
@@ -1400,54 +1407,55 @@ const Bodycomponent = () => {
 
             {/********** FILTER-BUTTONS **********/}
             <div className="container">
-                <h4 className=" fw-bold py-4">
-                    Top restaurants  in Hyderabad</h4>
-                <div className="row">
+                <div className=" my-4">
+                    <h4 className=" fw-bold">
+                        Top restaurants  in Hyderabad</h4>
+                    {/********** SEARCH BUTTON **********/}
+
+                    <input type="search" value={search} placeholder="search" onChange={(event) => {
+                        setSearch(event.target.value)
+                    }} />
+                    <button className="btn btn-danger mx-2 " onClick={() => {
+
+                        let searchFood = ToprestarantData.filter((food) => food.info.name.toLowerCase().includes((search.toLowerCase())))
+                        filterrestaurent(searchFood)
+
+                    }}>search</button>
+
+                </div>
+                <div className="">
                     {/********* BUTTON-1 *********/}
-                    <div className="col-2 mx-2">
-                        <button className="btn btn-outline-warning" onClick={() => {
-                            let filterresto = ToprestarantData.filter((resto) => (resto.info.avgRating > 4))
-                            filterrestaurent(filterresto)
-                            console.log(filterresto)
-                        }}
-                        >Rating 4+</button>
-                    </div>
+                    <button className="btn btn-outline-warning mx-1" onClick={() => {
+                        let AvgRate = avgRate.filter((resto) => (resto.info.avgRating > 4))
+                        filterrestaurent(AvgRate)
+                        console.log(AvgRate)
+                    }}
+                    ><small>Ratings 4+</small></button>
 
                     {/********** BUTTON-2 **********/}
-                    <div className="col-2 mx-2">
-                        <button className="btn btn-outline-success" onClick={() => {
+                    <button className="btn btn-outline-success mx-1" onClick={() => {
 
-                            let costResto = ToprestarantData.filter((rest) => rest.info.costForTwo === "₹400 for two")
-                            filterrestaurent(costResto)
-                            console.log(costResto)
+                        let costResto = costForTwo.filter((rest) => rest.info.costForTwo > "₹200 for two")
+                        filterrestaurent(costResto)
+                        console.log(costResto)
 
-                        }}>costForTwo</button>
-                    </div>
+                    }}><small>less than Rs.200</small></button>
 
-                    {/********** SEARCH BUTTON **********/}
-                    <div className="col-4">
-                        <input type="search" value={search} placeholder="search" onChange={(e) => {
+                    {/********** BUTTON-3 **********/}
+                    <button className="btn btn-outline-success mx-1" onClick={() => {
 
-                            setSearch(e.target.value)
-                        }} />
+                        let nearbyResto = nearTwokmResto.filter((rest) => rest.info.feeDetails.fees.fee == 3700)
+                        filterrestaurent(nearbyResto)
+                        console.log(nearbyResto)
 
-
-                        <button className="btn btn-danger mx-2 " onClick={() => {
-
-                            let searchFood = ToprestarantData.filter((food) => food.info.name.includes((search)))
-                            filterrestaurent(searchFood)
-
-                        }}>search</button>
-                    </div>
-
-
-
+                    }}><small>nearby 2Km</small></button>
                 </div>
 
                 <div className="row py-3" >
                     {
                         ToprestarantData.map((restarent) => (
                             <div className="col-lg-3 col-md-3 col-4 py-2" >
+                                
                                 <Link to={"restomenu/" + restarent.info.id} className="text"> <TopRestarentscomponent restoData={restarent} /> </Link>
 
                             </div>
@@ -1459,7 +1467,7 @@ const Bodycomponent = () => {
 
 
 
-            {/********* RESTARENT WITH ONLINE FOOD DEVIVERY *********/}
+            {/*************** RESTARENT WITH ONLINE FOOD DEVIVERY ***************/}
             <h4 className=" fw-bold mx-5 px-5 mt-5">Restaurants with online food delivery in Hyderabad</h4>
             <div className="container py-3 online-food-component">
                 <div className="row">

@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { logo_Img } from "../utilities/constantURL";
 import { Link } from "react-router-dom";
+import UserDetails from "../utilities/userDetails";
 
 const HeaderComponet = () => {
 
 
     const [btnName, updadtedBtnName] = useState("login")
+
+    const details = useContext(UserDetails)
+    console.log(details)
 
     return (
         <header className="sticky-top Header-componet">
