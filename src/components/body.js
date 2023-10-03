@@ -13,7 +13,7 @@
 
 import BestOffers from "../components/BestOffres.js"
 import UserLooksFor from "../components/whatsMind.js";
-import TopRestarentscomponent from "../components/TopRestaurant.js"
+import TopRestarentscomponent, { oneFreeDelivery } from "../components/TopRestaurant.js"
 import RestarentWithOnlineFood from "../components/Onlinedeliveryresto.js";
 // import { FoodData } from "../utilities/mockData.js";
 import { bestOffersData } from "../utilities/mockData.js";
@@ -22,7 +22,7 @@ import { onlineFoodDelivery } from "../utilities/mockData.js";
 import { useContext, useEffect, useState } from "react";
 import { Shimmer } from "./mainShimmer.js";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import UserDetails from "../utilities/userDetails.js";
 
 
@@ -32,23 +32,38 @@ const Bodycomponent = () => {
     // TOP-RESTAURENT-DATA
     let [ToprestarantData, filterrestaurent] = useState([]);
 
+    // ALL RESTAURENT-DATA FILTER
+    let [AllRestaurant, setAllrestaurant] = useState(ToprestarantData)
+
     // WHATS ON YOUR MIND-DATA
     let [whatsOnData, setWhatsOnData] = useState([]);
+
+    //Restaurants with online food delivery in Hyderabad
+    let [onlineDeliveryRestaureant, setonlineDeliveryRestaureant] = useState([])
 
     // CLICK FUNCTIONS FILTER BUTTONS USESATE
     let [avgRate, setAvgRate] = useState([]);
 
     let [costForTwo, setCostForTwo] = useState([]);
 
-    let [nearTwokmResto, setnearTwokmResto] = useState([]);
+    // let [nearTwokmResto, setnearTwokmResto] = useState([]);
 
 
-    //SEARCH COMPONENTS
-    let [search, setSearch] = useState([])
+    // TOP RESTAURANT  SEARCH COMPONENTS
+    let [search, setSearch] = useState([]);
+
+    // WHATS ON YOUR MIND SEARCH COMPONENTS
+    let [whatsFood, setWhatsFood] = useState([])
 
 
     // USER NAME FOR WHAT'S ON YOUR MIND WITH THE USE OF (USECONTEXT)
     const userName = useContext(UserDetails)
+
+
+    //HIGHER ORDER FUNCTION TO (oneFreeDelivery)
+    const Delivery = oneFreeDelivery(TopRestarentscomponent) // THIS LINE IS TREATED LIKE A COMPONENT LIKE (<Delivery/>)
+    // console.log(Delivery )
+
 
 
     useEffect(() => {
@@ -57,7 +72,12 @@ const Bodycomponent = () => {
 
         //WHATS-ON-YOUR-MIND-FETCH-DATA BY USING JAVASCRIPT FETCH METHOD LIKE (CALLBACK-METHOD)
         whatsonData();
+
+        // Restaurants with online food delivery in Hyderabad
+        restaurantWithOnlineDelivery();
     }, []);
+
+
 
 
 
@@ -66,8 +86,8 @@ const Bodycomponent = () => {
         const restData = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.41113717402138&lng=78.4521259367466&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const orginalData = await restData.json();
         // console.log(orginalData)
-        const apidta = orginalData.name
-        filterrestaurent(orginalData)
+        // const apidta = orginalData.name
+        // filterrestaurent(apidta)
 
         //////// TOP RESTAURENT JSON RAW DATA LIKE API///////
         const topRestoApiList = [
@@ -78,6 +98,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "9cf5be9a1d50bc7543796d5d7bcd6f9a",
                     locality: "Balkampet Rd",
                     areaName: "Ameerpet",
+                    oneFreeDelivery: true,
                     costForTwo: "₹200 for two",
                     cuisines: [
                         "Chinese",
@@ -180,6 +201,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "gronja3yeannuvwwjwua",
                     locality: "Masab Tank",
                     areaName: "Banjara Hills",
+                    oneFreeDelivery: true,
                     costForTwo: "₹400 for two",
                     cuisines: [
                         "Pizzas",
@@ -279,6 +301,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "j56oxlpkhbhofqshycov",
                     locality: "Central Zone",
                     areaName: "Somajiguda & Khairtabad",
+                    oneFreeDelivery: false,
                     costForTwo: "₹500 for two",
                     cuisines: [
                         "Desserts"
@@ -379,6 +402,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "fc5rarfywwliy6rkd5sb",
                     locality: "Opposite City Center Mall",
                     areaName: "Banjara Hills",
+                    oneFreeDelivery: true,
                     costForTwo: "₹1000 for two",
                     cuisines: [
                         "Arabian"
@@ -493,6 +517,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "y8iljdwvxte9e7rarib7",
                     locality: "Humayun Nagar",
                     areaName: "Masab Tank",
+                    oneFreeDelivery: false,
                     costForTwo: "₹250 for two",
                     cuisines: [
                         "Sweets",
@@ -596,6 +621,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "ix0mifgcpywoaeptbjh3",
                     locality: "Road 11",
                     areaName: "Banjara Hills",
+                    oneFreeDelivery: true,
                     costForTwo: "₹400 for two",
                     cuisines: [
                         "Biryani",
@@ -683,6 +709,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "bdebfd404d1b15acf064275279aafb7d",
                     locality: "Khairatabad Circle No.17",
                     areaName: "BANJARA HILLS",
+                    oneFreeDelivery: true,
                     costForTwo: "₹250 for two",
                     cuisines: [
                         "Bakery",
@@ -794,6 +821,7 @@ const Bodycomponent = () => {
                     locality: "Sheikpet village",
                     areaName: "Banjara Hills",
                     costForTwo: "₹300 for two",
+                    oneFreeDelivery: false,
                     cuisines: [
                         "Indian",
                         "Healthy Food",
@@ -914,6 +942,7 @@ const Bodycomponent = () => {
                     cloudinaryImageId: "xtdg2woge2yehuy4ixoo",
                     locality: "Road 9",
                     areaName: "Banjara Hills",
+                    oneFreeDelivery: true,
                     costForTwo: "₹450 for two",
                     cuisines: [
                         "Bakery",
@@ -1016,14 +1045,12 @@ const Bodycomponent = () => {
         filterrestaurent(topRestoApiList);
         setAvgRate(topRestoApiList);
         setCostForTwo(topRestoApiList);
-        setnearTwokmResto(topRestoApiList)
+        setAllrestaurant(topRestoApiList)
     };
 
 
     //////WHATS-ON-YOUR-MIND-FECTH-DATA///////////
     const whatsonData = () => {
-
-
         /* WHATS ON YOUR MIND DATA */
         const whatsOnMindApiList = [
             {
@@ -1350,7 +1377,1806 @@ const Bodycomponent = () => {
         ];
         setWhatsOnData(whatsOnMindApiList)
 
+    };
+
+
+    //Restaurants with online food delivery in Hyderabad/////////
+
+    const restaurantWithOnlineDelivery = () => {
+
+        const onlineDeliveryRestaurantData = [
+            {
+                info: {
+                    id: "61315",
+                    name: "Chai Point",
+                    cloudinaryImageId: "roxr7wsrrrwy80binchi",
+                    locality: "GVK Mall",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹150 for two",
+                    cuisines: [
+                        "Bakery",
+                        "Beverages",
+                        "Maharashtrian",
+                        "Snacks",
+                        "Street Food",
+                        "South Indian",
+                        "Punjabi",
+                        "Chaat",
+                        "Indian",
+                        "American",
+                        "North Indian",
+                        "Fast Food",
+                        "Desserts",
+                        "Cafe",
+                        "Healthy Food",
+                        "Home Food"
+                    ],
+                    avgRating: 4.2,
+                    feeDetails: {
+                        restaurantId: "61315",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "1607",
+                    avgRatingString: "4.2",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 24,
+                        lastMileTravel: 1.4,
+                        serviceability: "SERVICEABLE",
+                        slaString: "24 mins",
+                        lastMileTravelString: "1.4 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 22:00:00",
+                        opened: true
+                    },
+                    badges: {
+                        textExtendedBadges: [
+                            {
+                                iconId: "guiltfree/GF_Logo_android_3x",
+                                shortDescription: "options available",
+                                fontColor: "#7E808C"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "",
+                                            fontColor: "#7E808C",
+                                            iconId: "guiltfree/GF_Logo_android_3x",
+                                            shortDescription: "options available"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "60% OFF",
+                        subHeader: "UPTO ₹120"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/chai-point-gvk-mall-banjara-hills-hyderabad-61315",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "367769",
+                    name: "Lucky Restaurant",
+                    cloudinaryImageId: "qems028i3da5rxf81rbp",
+                    locality: "Banjara Hills",
+                    areaName: "MasabTank",
+                    costForTwo: "₹300 for two",
+                    cuisines: [
+                        "Biryani",
+                        "North Indian",
+                        "Tandoor"
+                    ],
+                    avgRating: 4,
+                    favourite: true,
+                    feeDetails: {
+                        restaurantId: "367769",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "293683",
+                    avgRatingString: "4.0",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 22,
+                        lastMileTravel: 2.7,
+                        serviceability: "SERVICEABLE",
+                        slaString: "22 mins",
+                        lastMileTravelString: "2.7 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-23 01:00:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "30% OFF",
+                        subHeader: "UPTO ₹75"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/lucky-restaurant-banjara-hills-masabtank-hyderabad-367769",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "1546",
+                    name: "Subway",
+                    cloudinaryImageId: "1ace5fa65eff3e1223feb696c956b38b",
+                    locality: "GVK Mall",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹350 for two",
+                    cuisines: [
+                        "Salads",
+                        "Snacks",
+                        "Desserts",
+                        "Beverages"
+                    ],
+                    avgRating: 4.3,
+                    feeDetails: {
+                        restaurantId: "1546",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "2",
+                    avgRatingString: "4.3",
+                    totalRatingsString: "5K+",
+                    sla: {
+                        deliveryTime: 28,
+                        lastMileTravel: 1.4,
+                        serviceability: "SERVICEABLE",
+                        slaString: "28 mins",
+                        lastMileTravelString: "1.4 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 22:50:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    aggregatedDiscountInfoV2: {},
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/subway-gvk-mall-banjara-hills-hyderabad-1546",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "28108",
+                    name: "Al Rabea Al Arabi Cafeteria",
+                    cloudinaryImageId: "jnzmscxd37rbjmgciwt5",
+                    locality: "Pillar no 37",
+                    areaName: "Mehdipatnam",
+                    costForTwo: "₹250 for two",
+                    cuisines: [
+                        "Arabian",
+                        "Lebanese"
+                    ],
+                    avgRating: 4.3,
+                    feeDetails: {
+                        restaurantId: "28108",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 3700
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 3700
+                    },
+                    parentId: "7582",
+                    avgRatingString: "4.3",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 27,
+                        lastMileTravel: 4.3,
+                        serviceability: "SERVICEABLE",
+                        slaString: "27 mins",
+                        lastMileTravelString: "4.3 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-23 01:00:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    aggregatedDiscountInfoV2: {},
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/al-rabea-al-arabi-cafeteria-pillar-no-37-mehdipatnam-hyderabad-28108",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "142670",
+                    name: "Shah Ghouse Cafe & Restaurant",
+                    cloudinaryImageId: "bk26jkkqpg55veii0aj9",
+                    locality: "Santh Nirankari Satsang Bhavan",
+                    areaName: "Lakdikapul",
+                    costForTwo: "₹350 for two",
+                    cuisines: [
+                        "Biryani",
+                        "Chinese",
+                        "Tandoor",
+                        "Mughlai",
+                        "North Indian"
+                    ],
+                    avgRating: 4.1,
+                    feeDetails: {
+                        restaurantId: "142670",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 3100
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 3100
+                    },
+                    parentId: "18992",
+                    avgRatingString: "4.1",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 24,
+                        lastMileTravel: 3,
+                        serviceability: "SERVICEABLE",
+                        slaString: "24 mins",
+                        lastMileTravelString: "3.0 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:59:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "₹75 OFF",
+                        subHeader: "ABOVE ₹299",
+                        discountTag: "FLAT DEAL"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/shah-ghouse-cafe-and-restaurant-santh-nirankari-satsang-bhavan-lakdikapul-hyderabad-142670",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "80479",
+                    name: "The Bowl Company",
+                    cloudinaryImageId: "bb6049fae59b8a2413a9177eb0338b49",
+                    locality: "Road No.12",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹300 for two",
+                    cuisines: [
+                        "Pan-Asian",
+                        "Continental",
+                        "North Indian",
+                        "Desserts",
+                        "American",
+                        "Asian",
+                        "Beverages",
+                        "Biryani",
+                        "Chinese",
+                        "European",
+                        "Grill",
+                        "Hyderabadi",
+                        "Indian",
+                        "Italian",
+                        "Kebabs",
+                        "Lucknowi",
+                        "Mediterranean",
+                        "Mexican",
+                        "Mughlai",
+                        "Oriental",
+                        "Pastas",
+                        "Punjabi",
+                        "Raja"
+                    ],
+                    avgRating: 4.2,
+                    feeDetails: {
+                        restaurantId: "80479",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "4317",
+                    avgRatingString: "4.2",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 23,
+                        lastMileTravel: 1.3,
+                        serviceability: "SERVICEABLE",
+                        slaString: "23 mins",
+                        lastMileTravelString: "1.3 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:30:00",
+                        opened: true
+                    },
+                    badges: {
+                        imageBadges: [
+                            {
+                                imageId: "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+                                description: "OnlyOnSwiggy"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "OnlyOnSwiggy",
+                                            imageId: "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png"
+                                        }
+                                    }
+                                ]
+                            },
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "EVERY ITEM",
+                        subHeader: "@ ₹139"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/the-bowl-company-road-no-12-banjara-hills-hyderabad-80479",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "112288",
+                    name: "Kwality Walls Frozen Dessert and Ice Cream Shop",
+                    cloudinaryImageId: "ihhogbpgpudzvikwmzjg",
+                    locality: "THE LOP STOP ICE CREAM",
+                    areaName: "Basheer Bagh",
+                    costForTwo: "₹100 for two",
+                    cuisines: [
+                        "Desserts",
+                        "Ice Cream",
+                        "Ice Cream Cakes"
+                    ],
+                    avgRating: 4.5,
+                    veg: true,
+                    feeDetails: {
+                        restaurantId: "112288",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 3100
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 3100
+                    },
+                    parentId: "582",
+                    avgRatingString: "4.5",
+                    totalRatingsString: "5K+",
+                    sla: {
+                        deliveryTime: 26,
+                        lastMileTravel: 3.7,
+                        serviceability: "SERVICEABLE",
+                        slaString: "26 mins",
+                        lastMileTravelString: "3.7 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:00:00",
+                        opened: true
+                    },
+                    badges: {
+                        imageBadges: [
+                            {
+                                imageId: "v1695133679/badges/Pure_Veg111.png",
+                                description: "pureveg"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "pureveg",
+                                            imageId: "v1695133679/badges/Pure_Veg111.png"
+                                        }
+                                    }
+                                ]
+                            },
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "40% OFF",
+                        subHeader: "UPTO ₹80"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/kwality-walls-frozen-dessert-and-ice-cream-shop-the-lop-stop-ice-cream-basheer-bagh-hyderabad-112288",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "4138",
+                    name: "Grand Hotel",
+                    cloudinaryImageId: "g1arzw6qd7g9affkmgzk",
+                    locality: "Abids",
+                    areaName: "Abids",
+                    costForTwo: "₹300 for two",
+                    cuisines: [
+                        "Biryani",
+                        "Chinese",
+                        "Tandoor",
+                        "Haleem"
+                    ],
+                    avgRating: 4.1,
+                    feeDetails: {
+                        restaurantId: "4138",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 5000
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 5000
+                    },
+                    parentId: "4001",
+                    avgRatingString: "4.1",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 34,
+                        lastMileTravel: 5.6,
+                        serviceability: "SERVICEABLE",
+                        slaString: "34 mins",
+                        lastMileTravelString: "5.6 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-23 00:00:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    aggregatedDiscountInfoV2: {},
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/grand-hotel-abids-hyderabad-4138",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "23698",
+                    name: "McDonald's",
+                    cloudinaryImageId: "ee5f8e06b300efc07c9fe3f4df40dfc4",
+                    locality: "City Center Mall",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹400 for two",
+                    cuisines: [
+                        "Burgers",
+                        "Beverages",
+                        "Cafe",
+                        "Desserts"
+                    ],
+                    avgRating: 4.2,
+                    feeDetails: {
+                        restaurantId: "23698",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "630",
+                    avgRatingString: "4.2",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 33,
+                        lastMileTravel: 0.7,
+                        serviceability: "SERVICEABLE",
+                        slaString: "33 mins",
+                        lastMileTravelString: "0.7 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 22:45:00",
+                        opened: true
+                    },
+                    badges: {
+                        textExtendedBadges: [
+                            {
+                                iconId: "guiltfree/GF_Logo_android_3x",
+                                shortDescription: "options available",
+                                fontColor: "#7E808C"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "",
+                                            fontColor: "#7E808C",
+                                            iconId: "guiltfree/GF_Logo_android_3x",
+                                            shortDescription: "options available"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "40% OFF",
+                        subHeader: "UPTO ₹80"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/mcdonalds-city-center-mall-banjara-hills-hyderabad-23698",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "26324",
+                    name: "KFC",
+                    cloudinaryImageId: "56c9ab92bd79745fd152a30fa2525426",
+                    locality: "Gvk One Mall",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹400 for two",
+                    cuisines: [
+                        "Burgers",
+                        "Biryani",
+                        "American",
+                        "Snacks",
+                        "Fast Food"
+                    ],
+                    avgRating: 4,
+                    feeDetails: {
+                        restaurantId: "26324",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "547",
+                    avgRatingString: "4.0",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 21,
+                        lastMileTravel: 1.5,
+                        serviceability: "SERVICEABLE",
+                        slaString: "21 mins",
+                        lastMileTravelString: "1.5 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:00:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "40% OFF",
+                        subHeader: "UPTO ₹80"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/kfc-gvk-one-mall-banjara-hills-hyderabad-26324",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "8784",
+                    name: "Burger King",
+                    cloudinaryImageId: "e33e1d3ba7d6b2bb0d45e1001b731fcf",
+                    locality: "Road no 1",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹350 for two",
+                    cuisines: [
+                        "Burgers",
+                        "American"
+                    ],
+                    avgRating: 4.2,
+                    feeDetails: {
+                        restaurantId: "8784",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "166",
+                    avgRatingString: "4.2",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 22,
+                        lastMileTravel: 1.3,
+                        serviceability: "SERVICEABLE",
+                        slaString: "22 mins",
+                        lastMileTravelString: "1.3 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:00:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "EVERY ITEM",
+                        subHeader: "@ ₹159"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/burger-king-road-no-1-banjara-hills-hyderabad-8784",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "24622",
+                    name: "Domino's Pizza",
+                    cloudinaryImageId: "gronja3yeannuvwwjwua",
+                    locality: "Masab Tank",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹400 for two",
+                    cuisines: [
+                        "Pizzas",
+                        "Italian",
+                        "Pastas",
+                        "Desserts"
+                    ],
+                    avgRating: 3.9,
+                    feeDetails: {
+                        restaurantId: "24622",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "2456",
+                    avgRatingString: "3.9",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 25,
+                        serviceability: "SERVICEABLE",
+                        slaString: "25 mins",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:59:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "40% OFF",
+                        subHeader: "UPTO ₹80"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/dominos-pizza-masab-tank-banjara-hills-hyderabad-24622",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "173464",
+                    name: "Pizza Hut",
+                    cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
+                    locality: "Banjara Hills",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹350 for two",
+                    cuisines: [
+                        "Pizzas"
+                    ],
+                    avgRating: 3.8,
+                    feeDetails: {
+                        restaurantId: "173464",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 3200
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 3200
+                    },
+                    parentId: "721",
+                    avgRatingString: "3.8",
+                    totalRatingsString: "1K+",
+                    sla: {
+                        deliveryTime: 33,
+                        lastMileTravel: 1.4,
+                        serviceability: "SERVICEABLE",
+                        slaString: "33 mins",
+                        lastMileTravelString: "1.4 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 22:45:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "50% OFF",
+                        subHeader: "UPTO ₹100"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/pizza-hut-banjara-hills-hyderabad-173464",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "376914",
+                    name: "Theobroma",
+                    cloudinaryImageId: "b033728dcb0101ceb19bff0e1e1f6474",
+                    locality: "Central Zone",
+                    areaName: "Somajiguda & Khairtabad",
+                    costForTwo: "₹500 for two",
+                    cuisines: [
+                        "Desserts"
+                    ],
+                    avgRating: 4.5,
+                    feeDetails: {
+                        restaurantId: "376914",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 3200
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 3200
+                    },
+                    parentId: "1040",
+                    avgRatingString: "4.5",
+                    totalRatingsString: "1K+",
+                    sla: {
+                        deliveryTime: 18,
+                        lastMileTravel: 2.4,
+                        serviceability: "SERVICEABLE",
+                        slaString: "18 mins",
+                        lastMileTravelString: "2.4 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-23 00:00:00",
+                        opened: true
+                    },
+                    badges: {
+                        imageBadges: [
+                            {
+                                imageId: "newg.png",
+                                description: "Gourmet"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "Gourmet",
+                                            imageId: "newg.png"
+                                        }
+                                    }
+                                ]
+                            },
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "10% OFF",
+                        subHeader: "ABOVE ₹159",
+                        discountTag: "FLAT DEAL"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/theobroma-central-zone-somajiguda-and-khairtabad-hyderabad-376914",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "312149",
+                    name: "Wow! Momo",
+                    cloudinaryImageId: "0984acc0ed7b914206dbbcb90297becc",
+                    locality: "Banjara Hills",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹300 for two",
+                    cuisines: [
+                        "Tibetan",
+                        "Healthy Food",
+                        "Asian",
+                        "Chinese",
+                        "Snacks",
+                        "Continental",
+                        "Desserts",
+                        "Beverages"
+                    ],
+                    avgRating: 3.9,
+                    feeDetails: {
+                        restaurantId: "312149",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "1776",
+                    avgRatingString: "3.9",
+                    totalRatingsString: "1K+",
+                    sla: {
+                        deliveryTime: 27,
+                        lastMileTravel: 2.6,
+                        serviceability: "SERVICEABLE",
+                        slaString: "27 mins",
+                        lastMileTravelString: "2.6 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-23 01:00:00",
+                        opened: true
+                    },
+                    badges: {},
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "50% OFF",
+                        subHeader: "UPTO ₹100"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/wow-momo-banjara-hills-hyderabad-312149",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "15160",
+                    name: "Faasos - Wraps & Rolls",
+                    cloudinaryImageId: "af33b81798b11deba338e94b7585d348",
+                    locality: "Union Bank of India Colony",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹200 for two",
+                    cuisines: [
+                        "Kebabs",
+                        "Fast Food",
+                        "Snacks",
+                        "North Indian",
+                        "American",
+                        "Healthy Food",
+                        "Desserts",
+                        "Beverages"
+                    ],
+                    avgRating: 4.1,
+                    feeDetails: {
+                        restaurantId: "15160",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "21809",
+                    avgRatingString: "4.1",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 30,
+                        lastMileTravel: 2.9,
+                        serviceability: "SERVICEABLE",
+                        slaString: "30 mins",
+                        lastMileTravelString: "2.9 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:59:00",
+                        opened: true
+                    },
+                    badges: {
+                        textExtendedBadges: [
+                            {
+                                iconId: "guiltfree/GF_Logo_android_3x",
+                                shortDescription: "options available",
+                                fontColor: "#7E808C"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "",
+                                            fontColor: "#7E808C",
+                                            iconId: "guiltfree/GF_Logo_android_3x",
+                                            shortDescription: "options available"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "₹100 OFF",
+                        subHeader: "ABOVE ₹249",
+                        discountTag: "FLAT DEAL"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/faasos-wraps-and-rolls-union-bank-of-india-colony-banjara-hills-hyderabad-15160",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "124165",
+                    name: "Starbucks Coffee",
+                    cloudinaryImageId: "4df3497f1460dfd1ecd8125222f6d362",
+                    locality: "GVK1 Mall",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹400 for two",
+                    cuisines: [
+                        "Beverages",
+                        "Cafe",
+                        "Snacks",
+                        "Desserts",
+                        "Bakery",
+                        "Ice Cream"
+                    ],
+                    avgRating: 4.2,
+                    feeDetails: {
+                        restaurantId: "124165",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "195515",
+                    avgRatingString: "4.2",
+                    totalRatingsString: "5K+",
+                    sla: {
+                        deliveryTime: 21,
+                        lastMileTravel: 1.4,
+                        serviceability: "SERVICEABLE",
+                        slaString: "21 mins",
+                        lastMileTravelString: "1.4 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 22:00:00",
+                        opened: true
+                    },
+                    badges: {
+                        textExtendedBadges: [
+                            {
+                                iconId: "guiltfree/GF_Logo_android_3x",
+                                shortDescription: "options available",
+                                fontColor: "#7E808C"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "",
+                                            fontColor: "#7E808C",
+                                            iconId: "guiltfree/GF_Logo_android_3x",
+                                            shortDescription: "options available"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "30% OFF",
+                        subHeader: "UPTO ₹75"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/starbucks-coffee-gvk1-mall-banjara-hills-hyderabad-124165",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "410945",
+                    name: "EatFit",
+                    cloudinaryImageId: "6126c9b45de2cb222405c1af8a321e74",
+                    locality: "Pizza hut building, Circle No.10",
+                    areaName: "Jubilee Hils",
+                    costForTwo: "₹270 for two",
+                    cuisines: [
+                        "Chinese",
+                        "Healthy Food",
+                        "Tandoor",
+                        "Pizzas",
+                        "North Indian",
+                        "Thalis",
+                        "Biryani"
+                    ],
+                    avgRating: 4.2,
+                    feeDetails: {
+                        restaurantId: "410945",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 5000
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 5000
+                    },
+                    parentId: "76139",
+                    avgRatingString: "4.2",
+                    totalRatingsString: "5K+",
+                    sla: {
+                        deliveryTime: 30,
+                        lastMileTravel: 5.6,
+                        serviceability: "SERVICEABLE",
+                        slaString: "30 mins",
+                        lastMileTravelString: "5.6 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:59:00",
+                        opened: true
+                    },
+                    badges: {
+                        textExtendedBadges: [
+                            {
+                                iconId: "guiltfree/GF_Logo_android_3x",
+                                shortDescription: "brand",
+                                fontColor: "#7E808C"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {},
+                            textBased: {},
+                            textExtendedBadges: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "",
+                                            fontColor: "#7E808C",
+                                            iconId: "guiltfree/GF_Logo_android_3x",
+                                            shortDescription: "brand"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "₹125 OFF",
+                        subHeader: "ABOVE ₹249",
+                        discountTag: "FLAT DEAL"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/eatfit-pizza-hut-building-circle-no-10-jubilee-hils-hyderabad-410945",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "262382",
+                    name: "Istah - The Mediterranean Way",
+                    cloudinaryImageId: "9a01f2935fcb5ae05426db8264062102",
+                    locality: "Sheikpet Village",
+                    areaName: "Banjara Hills",
+                    costForTwo: "₹250 for two",
+                    cuisines: [
+                        "Mediterranean",
+                        "Snacks",
+                        "Biryani",
+                        "Grill",
+                        "Kebabs",
+                        "Arabian",
+                        "Lebanese",
+                        "Beverages",
+                        "Desserts",
+                        "Italian",
+                        "Turkish"
+                    ],
+                    avgRating: 4.2,
+                    feeDetails: {
+                        restaurantId: "262382",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 2500
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 2500
+                    },
+                    parentId: "3518",
+                    avgRatingString: "4.2",
+                    totalRatingsString: "10K+",
+                    sla: {
+                        deliveryTime: 24,
+                        lastMileTravel: 1.3,
+                        serviceability: "SERVICEABLE",
+                        slaString: "24 mins",
+                        lastMileTravelString: "1.3 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:30:00",
+                        opened: true
+                    },
+                    badges: {
+                        imageBadges: [
+                            {
+                                imageId: "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+                                description: "OnlyOnSwiggy"
+                            }
+                        ],
+                        textExtendedBadges: [
+                            {
+                                iconId: "guiltfree/GF_Logo_android_3x",
+                                shortDescription: "options available",
+                                fontColor: "#7E808C"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "OnlyOnSwiggy",
+                                            imageId: "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png"
+                                        }
+                                    }
+                                ]
+                            },
+                            textBased: {},
+                            textExtendedBadges: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "",
+                                            fontColor: "#7E808C",
+                                            iconId: "guiltfree/GF_Logo_android_3x",
+                                            shortDescription: "options available"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    aggregatedDiscountInfoV3: {
+                        header: "EVERY ITEM",
+                        subHeader: "@ ₹139"
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/istah-the-mediterranean-way-sheikpet-village-banjara-hills-hyderabad-262382",
+                    type: "WEBLINK"
+                }
+            },
+            {
+                info: {
+                    id: "56268",
+                    name: "The Belgian Waffle Co.",
+                    cloudinaryImageId: "8cb220fa3997a3b928d2ffb6c098acaf",
+                    locality: "Next galleria mall",
+                    areaName: "Punjagutta",
+                    costForTwo: "₹200 for two",
+                    cuisines: [
+                        "Waffle",
+                        "Desserts",
+                        "Ice Cream",
+                        "Beverages"
+                    ],
+                    avgRating: 4.4,
+                    veg: true,
+                    feeDetails: {
+                        restaurantId: "56268",
+                        fees: [
+                            {
+                                name: "BASE_DISTANCE",
+                                fee: 3700
+                            },
+                            {
+                                name: "BASE_TIME"
+                            },
+                            {
+                                name: "ANCILLARY_SURGE_FEE"
+                            }
+                        ],
+                        totalFee: 3700
+                    },
+                    parentId: "2233",
+                    avgRatingString: "4.4",
+                    totalRatingsString: "5K+",
+                    sla: {
+                        deliveryTime: 35,
+                        lastMileTravel: 4,
+                        serviceability: "SERVICEABLE",
+                        slaString: "35 mins",
+                        lastMileTravelString: "4.0 km",
+                        iconType: "ICON_TYPE_EMPTY"
+                    },
+                    availability: {
+                        nextCloseTime: "2023-09-22 23:57:00",
+                        opened: true
+                    },
+                    badges: {
+                        imageBadges: [
+                            {
+                                imageId: "v1695133679/badges/Pure_Veg111.png",
+                                description: "pureveg"
+                            }
+                        ]
+                    },
+                    isOpen: true,
+                    aggregatedDiscountInfoV2: {},
+                    type: "F",
+                    badgesV2: {
+                        entityBadges: {
+                            imageBased: {
+                                badgeObject: [
+                                    {
+                                        attributes: {
+                                            description: "pureveg",
+                                            imageId: "v1695133679/badges/Pure_Veg111.png"
+                                        }
+                                    }
+                                ]
+                            },
+                            textBased: {},
+                            textExtendedBadges: {}
+                        }
+                    },
+                    differentiatedUi: {
+                        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        differentiatedUiMediaDetails: {
+                            mediaType: "ADS_MEDIA_ENUM_IMAGE",
+                            lottie: {},
+                            video: {}
+                        }
+                    },
+                    reviewsSummary: {},
+                    displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                    restaurantOfferPresentationInfo: {}
+                },
+                analytics: {},
+                cta: {
+                    link: "https://www.swiggy.com/restaurants/the-belgian-waffle-co-next-galleria-mall-punjagutta-hyderabad-56268",
+                    type: "WEBLINK"
+                }
+            }
+        ];
+
+        setonlineDeliveryRestaureant(onlineDeliveryRestaurantData)
     }
+
 
 
 
@@ -1389,14 +3215,28 @@ const Bodycomponent = () => {
 
             {/****************** What's On Your Mind ******************/}
             <div className="container my-2">
-                <h4 className="fw-bold  mt-5">{userName.name}, what's on your mind?</h4>
+                <div className="row mt-5 py-2">
+                    <div className="col-lg-6">
+                        <h4 className="fw-bold">{userName.name}, what's on your mind?</h4>
+                    </div>
+
+                    <div className="col-lg-6">
+                        <input type="search" placeholder="search for food" value={whatsFood} onChange={(event) => {
+                            setWhatsFood(event.target.value)
+                        }} />
+                    </div>
+                </div>
+
                 <div className="row">
                     {
-                        whatsOnData.map((fooditem) =>
+                        whatsOnData.filter((searchwhatsFood) => (
+                            searchwhatsFood.action.text.toLowerCase().includes((whatsFood))
+                        )).map((fooditem) =>
                             <div className="col-lg-2 col-md-3 col-4">
                                 <UserLooksFor food={fooditem} />
                             </div>
-                        )}
+                        )
+                    }
                 </div>
                 <hr />
             </div>
@@ -1407,24 +3247,35 @@ const Bodycomponent = () => {
 
             {/********** FILTER-BUTTONS **********/}
             <div className="container">
-                <div className=" my-4">
-                    <h4 className=" fw-bold">
-                        Top restaurants  in Hyderabad</h4>
-                    {/********** SEARCH BUTTON **********/}
+                <div className="row my-4">
+                    <div className="col-12-12 col-lg-4 col-md-6">
+                        <h5 className=" fw-bold">
+                            Top restaurants  in Hyderabad</h5>
+                    </div>
 
-                    <input type="search" value={search} placeholder="search" onChange={(event) => {
-                        setSearch(event.target.value)
-                    }} />
-                    <button className="btn btn-danger mx-2 " onClick={() => {
+                    <div className="col-12-12 col-lg-8">
+                        {/********** SEARCH BUTTON **********/}
+                        <input type="search" style={{ textAlign: "left", cursor: "auto" }} value={search} placeholder="search for restaurant" onChange={(event) => {
+                            setSearch(event.target.value)
+                        }} />
+                        {/* <button className="btn btn-danger" onClick={() => {
 
-                        let searchFood = ToprestarantData.filter((food) => food.info.name.toLowerCase().includes((search.toLowerCase())))
-                        filterrestaurent(searchFood)
+                            let searchFood = ToprestarantData.filter((food) => food.info.name.toLowerCase().includes((search.toLowerCase())))
+                            filterrestaurent(searchFood)
 
-                    }}>search</button>
+                        }}><i class="bi bi-search text-light"></i></button> */}
+                    </div>
 
                 </div>
                 <div className="">
                     {/********* BUTTON-1 *********/}
+                    <button className="btn btn-outline-primary" onClick={() => {
+                        let AllResto = AllRestaurant.filter((resto) => resto.ToprestarantData = ToprestarantData)
+                        console.log(AllResto)
+                        filterrestaurent(AllResto)
+                    }}>All</button>
+
+                    {/********* BUTTON-2 *********/}
                     <button className="btn btn-outline-warning mx-1" onClick={() => {
                         let AvgRate = avgRate.filter((resto) => (resto.info.avgRating > 4))
                         filterrestaurent(AvgRate)
@@ -1432,7 +3283,7 @@ const Bodycomponent = () => {
                     }}
                     ><small>Ratings 4+</small></button>
 
-                    {/********** BUTTON-2 **********/}
+                    {/********** BUTTON-3 **********/}
                     <button className="btn btn-outline-success mx-1" onClick={() => {
 
                         let costResto = costForTwo.filter((rest) => rest.info.costForTwo > "₹200 for two")
@@ -1441,22 +3292,29 @@ const Bodycomponent = () => {
 
                     }}><small>less than Rs.200</small></button>
 
-                    {/********** BUTTON-3 **********/}
-                    <button className="btn btn-outline-success mx-1" onClick={() => {
+                    {/********** BUTTON-4 **********/}
+                    {/* <button className="btn btn-outline-success mx-1" onClick={() => {
 
                         let nearbyResto = nearTwokmResto.filter((rest) => rest.info.feeDetails.fees.fee == 3700)
                         filterrestaurent(nearbyResto)
                         console.log(nearbyResto)
 
-                    }}><small>nearby 2Km</small></button>
+                    }}><small>nearby 2Km</small></button> */}
                 </div>
 
+                {/* TOP RESTAURENT DATA (MAP) BELOW */}
                 <div className="row py-3" >
                     {
-                        ToprestarantData.map((restarent) => (
-                            <div className="col-lg-3 col-md-3 col-4 py-2" >
-                                
-                                <Link to={"restomenu/" + restarent.info.id} className="text"> <TopRestarentscomponent restoData={restarent} /> </Link>
+                        ToprestarantData.filter((searchfood) => (
+                            searchfood.info.name.toLowerCase().includes((search))
+                        )).map((restarent) => (
+                            <div className="col-lg-3 col-md-3 col-6 py-2" >
+
+                                <Link to={"/restomenu/" + restarent.info.id} className="text">
+                                    {
+                                        restarent.info.oneFreeDelivery ? <Delivery restoData={restarent} /> : <TopRestarentscomponent restoData={restarent} />
+                                    }
+                                </Link>
 
                             </div>
                         ))
@@ -1472,9 +3330,9 @@ const Bodycomponent = () => {
             <div className="container py-3 online-food-component">
                 <div className="row">
                     {
-                        onlineFoodDelivery.map(onlineResto =>
+                        onlineDeliveryRestaureant.map(onlineRestaurent =>
                             <div className="col-lg-3 col-md-3 col-4 py-2">
-                                <RestarentWithOnlineFood onlineRestoDelivery={onlineResto} />
+                                <Link to={"/restomenu/" + onlineRestaurent.info.id} className="text">  <RestarentWithOnlineFood onlineRestoDelivery={onlineRestaurent} /> </Link>
                             </div>
 
                         )}

@@ -9,7 +9,7 @@ const TopRestarentscomponent = (props) => {
             <div className="card-body">
                 <img src={
                     top_resto_img + restoData.info.cloudinaryImageId
-                } width={"100%"} height={"50%"} />
+                } width={"100%"} height={"200px"} />
                 <h6 className="fw-bold mt-2">{restoData.info.name}</h6>
                 <h6><i className="bi bi-star-fill"></i> {restoData.info.avgRating}</h6>
                 <p>{restoData.info.cuisines.join(" , ")}</p>
@@ -18,6 +18,22 @@ const TopRestarentscomponent = (props) => {
         </div>
     )
 
-}
+};
+
+
+
+/************* HIGHER ORDER FUNCTION *************/
+export const oneFreeDelivery = (TopRestarentscomponent) => {
+    return (props) => {
+        return (
+            <div>
+                <label className="bg-success text-white">one free delivery</label>
+                <TopRestarentscomponent {...props}/>
+            </div>
+        )
+    }
+};
+
 
 export default TopRestarentscomponent;
+

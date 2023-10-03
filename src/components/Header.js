@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { logo_Img } from "../utilities/constantURL";
 import { Link } from "react-router-dom";
 import UserDetails from "../utilities/userDetails";
+import { useSelector } from "react-redux";
+
 
 const HeaderComponet = () => {
 
@@ -9,47 +11,47 @@ const HeaderComponet = () => {
     const [btnName, updadtedBtnName] = useState("login")
 
     const details = useContext(UserDetails)
-    console.log(details)
+    // console.log(details)
+
+
+    // SUBSCRIBING BY USING (SELECTORS) TO GET THE LENGTH OF THE CART ITEMS LIKE CART(0)
+    const cardItems = useSelector((store) => store.cart.items)
+    console.log(cardItems)
 
     return (
-        <header className="sticky-top Header-componet">
-            <nav className="container navbar navbar-expand-sm ">
-                <img src={logo_Img} width="6%" />
-                <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                    aria-expanded="false" aria-label="Toggle navigation"></button>
-                <div className="collapse navbar-collapse " id="collapsibleNavId">
-                    <ul className="navbar-nav ms-auto  mt-2 mt-lg-0">
-                        <li className="nav-item">
-                           <Link to="/" className="nav-link">Home</Link>
+        < nav class="navbar navbar-expand-lg  sticky-top Header-componet" >
+            <div class="container">
+                <img src={logo_Img} width={"6%"}></img>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <Link to="/" className="nav-link"> Home</Link>
                         </li>
-                        <li className="nav-item">
-                        <Link to="/about" className="nav-link">About</Link>
+                        <li class="nav-item">
+                            <Link to="/about"> <a class="nav-link" aria-current="page">About</a></Link>
                         </li>
-                        <li className="nav-item">
-                        <Link to="/menu" className="nav-link">Menu</Link>
+                        <li class="nav-item">
+                            <Link to="/menu"> <a class="nav-link" aria-current="page">Menu</a></Link>
                         </li>
-                        <li className="nav-item">
-                        <Link to="/offers" className="nav-link">offers</Link>
+                        <li class="nav-item">
+                            <Link to="/offers"> <a class="nav-link" aria-current="page">Offers</a></Link>
                         </li>
-                        <li className="nav-item">
-                        <Link to="/cart" className="nav-link">Cart</Link>
+                        <li class="nav-item">
+                            <Link to="/cart"> <a class="nav-link" aria-current="page">cart ({cardItems.length})</a></Link>
                         </li>
                     </ul>
-                    {/* <form className="d-flex  my-2 my-lg-0">
-                        <input className="form-control me-sm-2" type="text" placeholder="Search" />
-                        <button className="search-Button my-2 my-sm-0" type="submitz">submit</button>
-                    </form> */}
-                    <button className="btn btn-success" value="login" onClick={() => {
 
-                        //SHORTCUT METHOD  (IF ELSE) AND ASLO IT IS A (TERNARY OPERATOR)
+                    <button className="btn btn-success" onClick={() => {
                         btnName == "login" ? updadtedBtnName("logout") : updadtedBtnName("login")
+                    }} value={"login"}>{btnName}</button>
 
-                    }}
-                    >{btnName}</button>
                 </div>
-            </nav>
+            </div>
+        </nav >
 
-        </header>
     );
 }
 

@@ -10,7 +10,7 @@ const RestoMenu = () => {
 
     const [restoMenu, setRestoMenu] = useState(null);
 
-    //////////PARAMS TO USE THE RESTOID DYNAMICALLY IN THE URL//////////////////
+    ////////// PARAMS TO USE THE RESTOID DYNAMICALLY IN THE URL //////////////////
     const { restoid } = useParams()
     // console.log(restoid)
 
@@ -26,7 +26,7 @@ const RestoMenu = () => {
 
         try {
             const resto = await axios.get(restoMenu_URL + restoid)
-            console.log(resto.data)
+            // console.log(resto.data)
             setRestoMenu(resto.data)
         } catch {
             //API ERROR
@@ -34,7 +34,7 @@ const RestoMenu = () => {
     };
 
 
-    ///////////////CONDITIONAL RENDERING//////////////////////////
+    /////////////// CONDITIONALRENDERING //////////////////////////
     if (restoMenu === null) {
 
         return (
@@ -64,8 +64,8 @@ const RestoMenu = () => {
 
     return (
 
-        <div className="container my-5 ">
-            <div className="row ">
+        <div className="container-fluid my-5  ">
+            <div className="row sticky-top bg-white py-2" >
                 <div className="col-lg-4 col-md-5 offset-lg-3 offset-md-2 col-6 ">
                     <h5 className="fw-bold" >{name}</h5>
                     <small>{cuisines.join(" , ")}</small> <br />
@@ -79,18 +79,21 @@ const RestoMenu = () => {
                 </div>
                 <hr className="col-lg-6 col-12 offset-lg-3" />
 
-                <div className="col-lg-6 offset-md-2 offset-lg-3 d-flex gap-5">
-                    <p className="fw-bold"><i class="bi bi-clock-fill"></i> {slaString} </p>
-                    <p className="fw-bold"><i class="fa-solid fa-indian-rupee-sign"></i> {costForTwoMessage} </p>
-                </div>
+
             </div>
+
+            <div className="col-lg-6 offset-md-2 offset-lg-3 d-flex gap-5">
+                <p className="fw-bold"><i class="bi bi-clock-fill"></i> {slaString} </p>
+                <p className="fw-bold"><i class="fa-solid fa-indian-rupee-sign"></i> {costForTwoMessage} </p>
+            </div>
+
 
             {/****************** OFFERS LIST ******************/}
             <div className="row text-center my-3  gap-2 offset-lg-2 ">
                 {
                     offers.map((offer) =>
                         <>
-                            <div className=" col py-1 border border-1 rounded-3">
+                            <div className="col py-1 border border-1 rounded-3 ">
                                 <span className="fw-bold">{offer.info.header}</span> <br></br>
                                 <small> {offer.info.couponCode} </small> |
                                 <small> {offer.info.description} </small>

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponet from "./components/Header.js";
 import Bodycomponent from "./components/body.js"
-import Footercomponent from "./components/Footer.js";
+// import Footercomponent from "./components/Footer.js";
 import About from "./components/About.js";
 import Menu from "./components/Menu.js";
 import Offers from "./components/Offers.js";
@@ -10,6 +10,8 @@ import Error from "./components/Error.js";
 import Cart from "./components/Cart.js";
 import RestoMenu from "./components/RestoMenu.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
+import appStore from "./utilities/AppStore.js";
 
 
 
@@ -43,10 +45,12 @@ const AppLayout = () => {
 
   return (
     <div>
-      <HeaderComponet></HeaderComponet>
-      {/* <Bodycomponent></Bodycomponent> */}
-      <Outlet></Outlet>
-      {/* <Footercomponent></Footercomponent> */}
+      <Provider store={appStore}>
+        <HeaderComponet></HeaderComponet>
+        {/* <Bodycomponent></Bodycomponent> */}
+        <Outlet></Outlet>
+        {/* <Footercomponent></Footercomponent> */}
+      </Provider>
     </div>
   )
 
