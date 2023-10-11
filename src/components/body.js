@@ -18,7 +18,7 @@ import RestarentWithOnlineFood from "../components/Onlinedeliveryresto.js";
 // import { FoodData } from "../utilities/mockData.js";
 import { bestOffersData } from "../utilities/mockData.js";
 // import { ToprestarantData } from "../utilities/mockData.js";
-import { onlineFoodDelivery } from "../utilities/mockData.js";
+// import { onlineFoodDelivery } from "../utilities/mockData.js";
 import { useContext, useEffect, useState } from "react";
 import { Shimmer } from "./mainShimmer.js";
 import { Link } from "react-router-dom";
@@ -61,7 +61,7 @@ const Bodycomponent = () => {
 
 
     //HIGHER ORDER FUNCTION TO (oneFreeDelivery)
-    const Delivery = oneFreeDelivery(TopRestarentscomponent) // THIS LINE IS TREATED LIKE A COMPONENT LIKE (<Delivery/>)
+    const Delivery = oneFreeDelivery(TopRestarentscomponent) // THIS LINE IS TREATED LIKE A COMPONENT LIKE (<Delivery/> COMPONENT)
     // console.log(Delivery )
 
 

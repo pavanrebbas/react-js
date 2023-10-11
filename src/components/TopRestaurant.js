@@ -28,7 +28,7 @@ export const oneFreeDelivery = (TopRestarentscomponent) => {
         return (
             <div>
                 <label className="bg-success text-white">one free delivery</label>
-                <TopRestarentscomponent {...props}/>
+                <TopRestarentscomponent {...props} /> {/* ... MEANS SPEREAD OPERATOR */}
             </div>
         )
     }
